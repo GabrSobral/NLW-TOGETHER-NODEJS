@@ -1,0 +1,12 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev" : "tsnd --transpile-only --ignore-watch node_modules src/server.ts"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.4"
+  }
+}
