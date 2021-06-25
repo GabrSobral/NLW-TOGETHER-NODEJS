@@ -2,6 +2,7 @@ import { getCustomRepository } from "typeorm"
 import { UserRepository } from "../repositories/UserRepository"
 import bcrypt from 'bcryptjs'
 import JWT from 'jsonwebtoken'
+import { secret } from "../config/jwtSecret"
 
 interface IAuthenticatedRequest {
   email: string;
@@ -13,7 +14,6 @@ class AuthenticateUserService {
     const userRepository = getCustomRepository(UserRepository)
 
     const user = await userRepository.findOne({ email })
-    console.log(user)
 
     if(!user){
       throw new Error("Email/Password incorrect  aaaa")
@@ -25,7 +25,7 @@ class AuthenticateUserService {
       throw new Error("Email/Password incorrect bbb")
     }
 
-    const token = JWT.sign({email: user.email}, "senha", { 
+    const token = JWT.sign({email: user.email}, secret, { 
       expiresIn: '1d',
       subject: user.id,
     })

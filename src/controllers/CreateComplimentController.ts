@@ -8,7 +8,6 @@ class CreateComplimentController {
       message,
       tag_id,
       user_receiver,
-      user_sender,
     } = request.body
     const complimentService = new CreateComplimentService()
 
@@ -16,7 +15,7 @@ class CreateComplimentController {
       message,
       tag_id,
       user_receiver,
-      user_sender,
+      user_sender : request.user_id,
     })
 
     return response.json(newCompliment)
